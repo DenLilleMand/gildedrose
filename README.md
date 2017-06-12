@@ -1,10 +1,12 @@
-NB!
+# Setup
 In order for this to work, you need to install both maven and JDK on your slave.
 Log into the slave, and type the following:
 ```
 sudo apt install maven openjdk-8-jdk 
 ```
 
+# Coding Assignment
+While trying to know Jenkins, this will be your coding assignment. It is made just to give you some tangible code to work with:
 
 Given a positive integer number (eg 42) determine
 its Roman numeral representation as a String (eg "XLII").
@@ -32,3 +34,11 @@ Examples:
   47 -> "XLVII"  (40 -> "XL" + 7 -> "VII")
 
 ```
+
+# Exercises:
+### 1. Create a job:
+* Go into your Jenkins server at click on the `New Item` button on the left.
+* Name your new job "roman numerals" and choose `Freestyle project` and click OK
+* Under `Source Code Management` choose git, and paste in your git clone URL for this project (Remember to choose your fork of the project!).
+* Choose the credentials that you have set up in Jenkins to auth it against GitHub 
+* Click `save` and then the `Build Now` button.
