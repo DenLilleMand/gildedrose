@@ -36,9 +36,52 @@ Examples:
 ```
 
 # Exercises:
-### 1. Create a job:
+### 1. Create a job and clone git:
 * Go into your Jenkins server at click on the `New Item` button on the left.
 * Name your new job "roman numerals" and choose `Freestyle project` and click OK
 * Under `Source Code Management` choose git, and paste in your git clone URL for this project (Remember to choose your fork of the project!).
 * Choose the credentials that you have set up in Jenkins to auth it against GitHub 
 * Click `save` and then the `Build Now` button.
+* Observe that there is a new build in the build history, that hopefully is blue.
+* Clik on it and click on `Console Output` to see something like this on your screen :
+```
+Started by user Sofus
+Building in workspace /var/lib/jenkins/workspace/test
+Cloning the remote Git repository
+Cloning repository git@github.com:praqma-training/romannumerals.git
+ > git init /var/lib/jenkins/workspace/test # timeout=10
+Fetching upstream changes from git@github.com:praqma-training/romannumerals.git
+ > git --version # timeout=10
+using GIT_SSH to set credentials 
+ > git fetch --tags --progress git@github.com:praqma-training/romannumerals.git +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url git@github.com:praqma-training/romannumerals.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@github.com:praqma-training/romannumerals.git # timeout=10
+Fetching upstream changes from git@github.com:praqma-training/romannumerals.git
+using GIT_SSH to set credentials 
+ > git fetch --tags --progress git@github.com:praqma-training/romannumerals.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 94ca2473f084c804aec50945e022e2d4102862d1 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 94ca2473f084c804aec50945e022e2d4102862d1
+First time build. Skipping changelog.
+Finished: SUCCESS
+```
+**Congratulations, you have now made your first jenkins job!**
+
+### 2. Running a maven test
+
+* Click on the `Back to Project` button, and go in and Configure the job again.
+* Under the `Build` section, add an `Invoke top-level Maven targets` step and write `test` in it.
+* Click save, and build now once more.
+* Go into the console output like last time, and see that maven now actually runs your tests.
+
+### 3. scheduling the build
+As a team, you do not want to go in and manually build the project every time you have some new code commited. _it needs to be automated, right!?!_
+
+* Go into `Configuration` again and select the `Poll SCM` checkbox
+* Type in `* * * * */1` to tell Jenkins to check for new commits every minute.
+* Make a new commit, uncommenting the test in src/test/java/net/praqma/codeacademy/romannumerals/AppTest.java
+* Push that change to github, and monitor as Jenkins starts a build automatically.
+
