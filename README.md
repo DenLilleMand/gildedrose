@@ -7,6 +7,7 @@ sudo apt install maven openjdk-8-jdk
 
 # Coding Assignment
 While trying to know Jenkins, this will be your coding assignment. It is made just to give you some tangible code to work with:
+Remember, this is not a programming exercise, but a Jenkins one; code is only there so you have something to build :)
 
 Given a positive integer number (eg 42) determine
 its Roman numeral representation as a String (eg "XLII").
@@ -73,7 +74,7 @@ Finished: SUCCESS
 ### 2. Running a maven test
 
 * Click on the `Back to Project` button, and go in and Configure the job again.
-* Under the `Build` section, add an `Invoke top-level Maven targets` step and write `test` in it.
+* Under the `Build` section, add an `Invoke top-level Maven targets` step and write `test` in it. That will trigger the maven test goal on the project, compiling the java code and running the unit tests.
 * Click save, and build now once more.
 * Go into the console output like last time, and see that maven now actually runs your tests.
 
@@ -85,3 +86,16 @@ As a team, you do not want to go in and manually build the project every time yo
 * Make a new commit, uncommenting the test in src/test/java/net/praqma/codeacademy/romannumerals/AppTest.java
 * Push that change to github, and monitor as Jenkins starts a build automatically.
 
+### 4. Generating an artifact
+
+Our Java project needs to be packaged into a Jar file, in order to be ready for release.
+
+
+
+* change the maven goal from `test` to `install`.
+* Under `Post-build Actions` add the `Archive the artifacts` action, and write `target/romannumerals-*.jar` in it. That will take the output from the maven goal and add it as an artifact.
+* Choose the advanced options and select `Archive artifacts only if build is successful` as well to reduce the number of artifacts
+* Click save
+* Go back to the job dashboard.
+* Fix the unit test by implementing a dumb way of solving the test.
+* Push the change to GitHub, and monitor that Jenkins will grab that change and make a build, producing an artifact.
