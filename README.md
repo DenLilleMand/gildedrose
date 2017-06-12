@@ -1,3 +1,11 @@
+NB!
+In order for this to work, you need to install both maven and JDK on your slave.
+Log into the slave, and type the following:
+```
+sudo apt install maven openjdk-8-jdk 
+```
+
+
 Given a positive integer number (eg 42) determine
 its Roman numeral representation as a String (eg "XLII").
 
