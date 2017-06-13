@@ -85,11 +85,11 @@ As a team, you do not want to go in and manually build the project every time yo
 * Type in `* * * * */1` to tell Jenkins to check for new commits every minute.
 * Make a new commit, uncommenting the test in src/test/java/net/praqma/codeacademy/romannumerals/AppTest.java
 * Push that change to github, and monitor as Jenkins starts a build automatically.
+* Note that the build fails (because the uncommented test is failing) _this is OK_.
 
 ### 4. Generating an artifact
 
 Our Java project needs to be packaged into a Jar file, in order to be ready for release.
-
 
 
 * change the maven goal from `test` to `install`.
