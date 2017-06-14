@@ -9,7 +9,7 @@ public class AppTest {
 	@Test
 	public void testConvert() {
 		assertEquals("I", App.convert(1));
-//		assertEquals("II", App.convert(2));
+		assertEquals("II", App.convert(2));
 	}
 
 }
