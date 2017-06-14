@@ -102,3 +102,5 @@ Our Java project needs to be packaged into a Jar file, in order to be ready for 
 
 
 ### 5. Making the pipeline script work
+
+There is a file in this folder called Jenkinsfile
