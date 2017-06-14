@@ -99,3 +99,6 @@ Our Java project needs to be packaged into a Jar file, in order to be ready for 
 * Go back to the job dashboard.
 * Fix the unit test by implementing a dumb way of solving the test.
 * Push the change to GitHub, and monitor that Jenkins will grab that change and make a build, producing an artifact.
+
+
+### 5. Making the pipeline script work
