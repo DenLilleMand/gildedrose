@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Setup
 In order for this to work, you need to install both maven and JDK on your slave.
 Log into the slave, and type the following:
