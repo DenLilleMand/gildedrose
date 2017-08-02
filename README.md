@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Setup
 In order for this to work, you need to install both maven and JDK on your slave.
 Log into the slave, and type the following:
@@ -9,34 +10,49 @@ sudo apt install maven openjdk-8-jdk
 While trying to know Jenkins, this will be your coding assignment. It is made just to give you some tangible code to work with:
 Remember, this is not a programming exercise, but a Jenkins one; code is only there so you have something to build :)
 
-Given a positive integer number (eg 42) determine
-its Roman numeral representation as a String (eg "XLII").
+In a language of your choice, e.g. Java, implement the following functionality.
 
-You cannot write numerals like IM for 999.
-Wikipedia states "Modern Roman numerals are written by
-expressing each digit separately starting with the
-leftmost digit and skipping any digit with a value of zero."
+## Gilded Rose Requirements Specification
 
-Examples:
-```
-1 ->    "I" | 10 ->    "X" | 100 ->    "C" | 1000 ->    "M"
-2 ->   "II" | 20 ->   "XX" | 200 ->   "CC" | 2000 ->   "MM"
-3 ->  "III" | 30 ->  "XXX" | 300 ->  "CCC" | 3000 ->  "MMM"
-4 ->   "IV" | 40 ->   "XL" | 400 ->   "CD" | 4000 -> "MMMM"
-5 ->    "V" | 50 ->    "L" | 500 ->    "D" |
-6 ->   "VI" | 60 ->   "LX" | 600 ->   "DC" |
-7 ->  "VII" | 70 ->  "LXX" | 700 ->  "DCC" |
-8 -> "VIII" | 80 -> "LXXX" | 800 -> "DCCC" |
-9 ->   "IX" | 90 ->   "XC" | 900 ->   "CM" |
+Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a
+prominent city ran by a friendly innkeeper named Allison. We also buy and sell only the finest goods.
+Unfortunately, our goods are constantly degrading in quality as they approach their sell by date. We
+have a system in place that updates our inventory for us. It was developed by a no-nonsense type named
+Leeroy, who has moved on to new adventures. Your task is to add the new feature to our system so that
+we can begin selling a new category of items. First an introduction to our system:
 
-1990 -> "MCMXC"  (1000 -> "M"  + 900 -> "CM" + 90 -> "XC")
-2008 -> "MMVIII" (2000 -> "MM" + 8 -> "VIII")
-  99 -> "XCIX"   (90 -> "XC" + 9 -> "IX")
-  47 -> "XLVII"  (40 -> "XL" + 7 -> "VII")
+   - All items have a SellIn value which denotes the number of days we have to sell the item
+   - All items have a Quality value which denotes how valuable the item is
+   - At the end of each day our system lowers both values for every item
 
-```
+Pretty simple, right? Well this is where it gets interesting:
+
+       - Once the sell by date has passed, Quality degrades twice as fast
+       - The Quality of an item is never negative
+       - "Aged Brie" actually increases in Quality the older it gets
+       - The Quality of an item is never more than 50
+       - "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+       - "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+	   Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+   	   Quality drops to 0 after the concert
+
+We have recently signed a supplier of conjured items. This requires an update to our system:
+
+   - "Conjured" items degrade in Quality twice as fast as normal items
+
+Feel free to make any changes to the UpdateQuality method and add any new code as long as everything
+still works correctly. However, do not alter the Item class or Items property as those belong to the
+goblin in the corner who will insta-rage and one-shot you as he doesn't believe in shared code
+ownership (you can make the UpdateQuality method and Items property static if you like, we'll cover
+for you).
+
+Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a
+legendary item and as such its Quality is 80 and it never alters.
 
 # Exercises:
+
+
+
 ### 1. Create a job and clone git:
 * Go into your Jenkins server at click on the `New Item` button on the left.
 * Name your new job "roman numerals" and choose `Freestyle project` and click OK
