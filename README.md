@@ -98,7 +98,7 @@ Finished: SUCCESS
 ### 2. Running a maven test
 
 * Click on the `Back to Project` button, and go in and `Configure` the job again.
-* Under the `Build` section, add an `Invoke top-level Maven targets` step and write `test` in it. That will trigger the maven test goal on the project, compiling the java code and running the unit tests.
+* Under the `Build` section, add an `Invoke top-level Maven targets` step and write `-Dmodule=Java test` in it, (if you're using the Java project!). That will trigger the maven test goal on the project, compiling the java code and running the unit tests.
 * Click save, and build now once more.
 * Go into the console output like last time, and see that maven now actually runs your tests.
 
