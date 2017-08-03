@@ -50,37 +50,47 @@ legendary item and as such its Quality is 80 and it never alters.
 
 # Exercises:
 
+### 0. Authenticate Jenkins to GitHub
+* Generate a new SSH key that will be used by Jenkins to prove itself to GitHub, by following the first part of [Generating a new SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+* Add the public-key to your GitHub account by following [Adding a new SSH key to your GitHub account](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+* Add the private-key to Jenkins, through
+  * Credentials
+  * (global) -> Add credentials
+      * Choose Kind "SSH Username with private key", write the details used to generate the keypair and paste the contents from the private-key you generated in the first step, (default ~/.ssh/id_rsa)
+      write the passphrase you chose.
+      * Save it.
 
+Possible pitfall, GitHub might not be in known_hosts, try:
+```sudo ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts```
+
+### 0.5 Duplicating the public repository to your own private repository
+* Create a new private repository on your GitHub account. The [Student Developer Pack](https://education.github.com/pack) provides you with free private repositories.
+* Mirror the Gildedrose repository by following the first part of [Duplicating a repository](https://help.github.com/articles/duplicating-a-repository/) to your own repository.
 
 ### 1. Create a job and clone git:
 * Go into your Jenkins server at click on the `New Item` button on the left.
-* Name your new job "roman numerals" and choose `Freestyle project` and click OK
-* Under `Source Code Management` choose git, and paste in your git clone URL for this project (Remember to choose your fork of the project!).
-* Choose the credentials that you have set up in Jenkins to auth it against GitHub 
+* Name your new job "gilded rose" and choose `Freestyle project` and click OK
+* Under `Source Code Management` choose git, and paste in your git clone URL for this project (Remember to choose the "Clone with SSH" url!). You will see red text because you haven't yet provided credentials for accessing your private repository.
+* Choose the credentials that you have set up in Jenkins to auth it against GitHub. The red text should disappear.
 * Click `save` and then the `Build Now` button.
 * Observe that there is a new build in the build history, that hopefully is blue.
 * Clik on it and click on `Console Output` to see something like this on your screen :
 ```
-Started by user Sofus
-Building in workspace /var/lib/jenkins/workspace/test
-Cloning the remote Git repository
-Cloning repository git@github.com:praqma-training/romannumerals.git
- > git init /var/lib/jenkins/workspace/test # timeout=10
-Fetching upstream changes from git@github.com:praqma-training/romannumerals.git
+Started by user admin
+Building in workspace /var/jenkins_home/workspace/my first job
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:figaw/gildedrose.git # timeout=10
+Fetching upstream changes from git@github.com:figaw/gildedrose.git
  > git --version # timeout=10
-using GIT_SSH to set credentials 
- > git fetch --tags --progress git@github.com:praqma-training/romannumerals.git +refs/heads/*:refs/remotes/origin/*
- > git config remote.origin.url git@github.com:praqma-training/romannumerals.git # timeout=10
- > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
- > git config remote.origin.url git@github.com:praqma-training/romannumerals.git # timeout=10
-Fetching upstream changes from git@github.com:praqma-training/romannumerals.git
-using GIT_SSH to set credentials 
- > git fetch --tags --progress git@github.com:praqma-training/romannumerals.git +refs/heads/*:refs/remotes/origin/*
+using GIT_SSH to set credentials Test to ssh jenkins access github
+ > git fetch --tags --progress git@github.com:figaw/gildedrose.git +refs/heads/*:refs/remotes/origin/*
  > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
  > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
-Checking out Revision 94ca2473f084c804aec50945e022e2d4102862d1 (refs/remotes/origin/master)
+Checking out Revision 06344e7eb74250449756084692ce55c4e701ce7d (refs/remotes/origin/master)
+Commit message: "Update README.md"
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 94ca2473f084c804aec50945e022e2d4102862d1
+ > git checkout -f 06344e7eb74250449756084692ce55c4e701ce7d
 First time build. Skipping changelog.
 Finished: SUCCESS
 ```
