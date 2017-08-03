@@ -53,26 +53,25 @@ legendary item and as such its Quality is 80 and it never alters.
 ### 0. Authenticate Jenkins to GitHub
 * Generate a new SSH key that will be used by Jenkins to prove itself to GitHub, by following the first part of [Generating a new SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
 * Add the public-key to your GitHub account by following [Adding a new SSH key to your GitHub account](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
-* Add the private-key to Jenkins, through
-  * Credentials
-  * (global) -> Add credentials
+* Add the private-key to Jenkins, by opening your Jenkins server, and clicking `Credentials`
+  * Click `(global)` and `Add credentials`
       * Choose Kind "SSH Username with private key", write the details used to generate the keypair and paste the contents from the private-key you generated in the first step, (default ~/.ssh/id_rsa)
       write the passphrase you chose.
       * Save it.
 
 Possible pitfall, GitHub might not be in known_hosts, try:
-```sudo ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts```
+`sudo ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts`
 
 ### 0.5 Duplicating the public repository to your own private repository
 * Create a new private repository on your GitHub account. The [Student Developer Pack](https://education.github.com/pack) provides you with free private repositories.
 * Mirror the Gildedrose repository by following the first part of [Duplicating a repository](https://help.github.com/articles/duplicating-a-repository/) to your own repository.
 
 ### 1. Create a job and clone git:
-* Go into your Jenkins server at click on the `New Item` button on the left.
+* Go into your Jenkins server and click on the `New Item` button on the left.
 * Name your new job "gilded rose" and choose `Freestyle project` and click OK
 * Under `Source Code Management` choose git, and paste in your git clone URL for this project (Remember to choose the "Clone with SSH" url!). You will see red text because you haven't yet provided credentials for accessing your private repository.
 * Choose the credentials that you have set up in Jenkins to auth it against GitHub. The red text should disappear.
-* Click `save` and then the `Build Now` button.
+* Click `Save` and then the `Build Now` button.
 * Observe that there is a new build in the build history, that hopefully is blue.
 * Clik on it and click on `Console Output` to see something like this on your screen :
 ```
@@ -103,7 +102,7 @@ Finished: SUCCESS
 * Click save, and build now once more.
 * Go into the console output like last time, and see that maven now actually runs your tests.
 
-### 3. scheduling the build
+### 3. Scheduling the build
 As a team, you do not want to go in and manually build the project every time you have some new code commited. _it needs to be automated, right!?!_
 
 * Go into `Configuration` again and select the `Poll SCM` checkbox
@@ -117,7 +116,7 @@ As a team, you do not want to go in and manually build the project every time yo
 Our Java project needs to be packaged into a Jar file, in order to be ready for release.
 
 
-* change the maven goal from `test` to `install`.
+* Change the maven goal from `test` to `install`.
 * Under `Post-build Actions` add the `Archive the artifacts` action, and write `target/romannumerals-*.jar` in it. That will take the output from the maven goal and add it as an artifact.
 * Choose the advanced options and select `Archive artifacts only if build is successful` as well to reduce the number of artifacts
 * Click save
