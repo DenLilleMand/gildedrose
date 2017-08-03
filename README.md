@@ -102,6 +102,8 @@ Finished: SUCCESS
 * Click save, and build now once more.
 * Go into the console output like last time, and see that maven now actually runs your tests.
 
+Possible pitfall: Maven might not be configured in Jenkins. Go to http://localhost:8080/configureTools/ and Add a maven installation, name it, "check" `install automatically`. Go back and configure the job, chose the maven version you just named. Save and build again. Maven should now be downloaded, and the first console output will show every detail of this. Subsequent console outputs will be shorter and will show the output of the tests.
+
 ### 3. Scheduling the build
 As a team, you do not want to go in and manually build the project every time you have some new code commited. _it needs to be automated, right!?!_
 
