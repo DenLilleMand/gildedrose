@@ -1,4 +1,4 @@
-package com.gildedrose;
+package net.praqma.codeacademy.gildedrose;
 
 public class TexttestFixture {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.gildedrose;
+package net.praqma.codeacademy.gildedrose;
 
 public class Item {
 

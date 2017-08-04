@@ -1,3 +1,4 @@
+
 # Created by https://www.gitignore.io/api/java,maven,eclipse
 
 ### Eclipse ###
@@ -53,10 +54,10 @@ local.properties
 .worksheet
 
 ### Eclipse Patch ###
-# Eclipse Core		
+# Eclipse Core
 .project
 
-# JDT-specific (Eclipse Java Development Tools)		
+# JDT-specific (Eclipse Java Development Tools)
 .classpath
 
 ### Java ###
@@ -98,8 +99,3 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.gitignore.io/api/java,maven,eclipse
-
-.idea/workspace.xml
-*.pyc
-/perl6/lib/.precomp
-
