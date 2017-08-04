@@ -105,7 +105,7 @@ As a team, you do not want to go in and manually build the project every time yo
 * Type in `* * * * */1` to tell Jenkins to check for new commits every minute.
 * Make a new commit, uncommenting the test in src/test/java/net/praqma/codeacademy/gildedrose/GildedRoseTest.java
 * Push that change to github, and monitor as Jenkins starts a build automatically.
-* Note that the build fails (because the uncommented test is failing) _this is OK_.
+* Note that the build fails (because the test is failing) _this is OK_.
 
 ### 4. Generating an artifact
 
@@ -119,6 +119,10 @@ Our Java project needs to be packaged into a Jar file, in order to be ready for 
 * Fix the unit test by implementing a dumb way of solving the test.
 * Push the change to GitHub, and monitor that Jenkins will grab that change and make a build, producing an artifact.
 
+### 4.5 implementing the Gilded Rose
+Look in src/test/java/net/praqma/codeacademy/gildedrose/TexttestFixture.java for examples of items to use for tests.
+* Make a test and push it, observe it failing
+* Make changes to pass the test and push them, observe as only working code are built to production"
 
 ### 5. Making the pipeline script work
 
