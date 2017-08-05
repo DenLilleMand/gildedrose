@@ -197,6 +197,18 @@ stage('parallel'){
 
 
 ### Multibranch pipeline
-There is a file in this folder called Jenkinsfile
+There is a file in this repository called Jenkinsfile
 
 Right now it only has a dumb `hello world`
+
+* Take your pipeline script, and replace the files content with it.
+* Replace the git command with `checkout scm`. Multibranch knows where it gets triggered from.
+* Push that back to the repository
+* Create a new job of the `multibranch pipeline` type, and configure that to take from your repository.
+* Trigger it to see that it works.
+* Make a new branch locally, and push it up to GitHub to see that it automatically makes a new pipeline for you as well.
+
+**That's it!** You rock at this!
+If you have more time, and want to make a real pipeline with pretested integration, then read our story about (pipeline vs old fashioned jobs)[http://www.praqma.com/stories/jenkins-pipeline/] and try to incorporate the script into your own pipeline!
+
+
