@@ -134,7 +134,7 @@ First off, we need a new `Pipeline` job.
 * Head down to the `Pipeline` section of the job, and click on the "try sample pipeline" and choose `Hello world`
 * Save and Build it.
 
-The result should very well be that you have a blue (succesful) build, and in the manin view a text saying the following will appear:
+The result should very well be that you have a blue (succesful) build, and in the main view a text saying the following will appear:
 
 >This Pipeline has run successfully, but does not define any stages. Please use the stage step to define some stages in this Pipeline.
 
@@ -142,7 +142,7 @@ We have to look into that now, *don't we?*
 
 ### 6. Convert your pipeline
 
-In pipeline, we like ´stages´ as they give us the ability to see where in the process things are going wrong.
+In pipeline, we like `stages` as they give us the ability to see where in the process things are going wrong.
 So take a look at your old build script and transfer the things you did there to the jenkins script.
 
 If you cant remember the syntax for creating states, then here is the hello world example of it:
@@ -172,7 +172,7 @@ Fortuneatly that can be done with a small `mvn site` command.
 
 Now we have two processes that actually can be run in parallel. The `build` and `javadoc` steps both take in the sourcecode and produces artifacts. So lets try to run them in parallel.
 
-> This assignment is loosely formulated, so you need to (look things up yourself)[https://jenkins.io/doc/pipeline/steps/] in order to complete this one
+> This assignment is loosely formulated, so you need to [look things up yourself](https://jenkins.io/doc/pipeline/steps/) in order to complete this one
 
 * Stash the source code cloned in `Preparation` and call it source
 * `build` and `javadoc` steps needs to be included in a parallel step like the one below
@@ -209,6 +209,6 @@ Right now it only has a dumb `hello world`
 * Make a new branch locally, and push it up to GitHub to see that it automatically makes a new pipeline for you as well.
 
 **That's it!** You rock at this!
-If you have more time, and want to make a real pipeline with pretested integration, then read our story about (pipeline vs old fashioned jobs)[http://www.praqma.com/stories/jenkins-pipeline/] and try to incorporate the script into your own pipeline!
+If you have more time, and want to make a real pipeline with pretested integration, then read our story about [pipeline vs old fashioned jobs](http://www.praqma.com/stories/jenkins-pipeline/) and try to incorporate the script into your own pipeline!
 
 
