@@ -122,7 +122,7 @@ Our Java project needs to be packaged into a Jar file, in order to be ready for 
 ### 4.5 implementing the Gilded Rose
 Look in src/test/java/net/praqma/codeacademy/gildedrose/TexttestFixture.java for examples of items to use for tests.
 * Make a test and push it, observe it failing
-* Make changes to pass the test and push them, observe as only working code are built to production"
+* Make changes to pass the test and push them, observe as only working code are built to production
 
 ### 5. Making the pipeline script work
 Now you have made a really nice pipeline in Jenkins just using the normal jobs.
