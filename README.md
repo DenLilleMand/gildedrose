@@ -125,5 +125,90 @@ Look in src/test/java/net/praqma/codeacademy/gildedrose/TexttestFixture.java for
 * Make changes to pass the test and push them, observe as only working code are built to production"
 
 ### 5. Making the pipeline script work
+Now you have made a really nice pipeline in Jenkins just using the normal jobs.
+Now we want it *as code*!
+ 
+First off, we need a new `Pipeline` job.
 
-There is a file in this folder called Jenkinsfile
+* Click on `New Item`, choose `Pipeline` type, and give it a name.
+* Head down to the `Pipeline` section of the job, and click on the "try sample pipeline" and choose `Hello world`
+* Save and Build it.
+
+The result should very well be that you have a blue (succesful) build, and in the manin view a text saying the following will appear:
+
+>This Pipeline has run successfully, but does not define any stages. Please use the stage step to define some stages in this Pipeline.
+
+We have to look into that now, *don't we?*
+
+### 6. Convert your pipeline
+
+In pipeline, we like ´stages´ as they give us the ability to see where in the process things are going wrong.
+So take a look at your old build script and transfer the things you did there to the jenkins script.
+
+If you cant remember the syntax for creating states, then here is the hello world example of it:
+
+```
+node {
+    stage ('Hello'){
+        echo 'Hello World'
+    }
+}
+```
+
+Make three stages that does the following:
+
+* `Preparation`: Clone the repository from git.
+* `Build` : Executes maven `clean package`
+* `Results` :  Make jUnit display the results of `**/target/surefire-reports/TEST-*.xml`, and archive the generated jar file in the `target` folder
+
+Run this to see that it's working. The archiving part can be verified by looking for a small blue arrow next to the build number in the overview. Make sure you get your Jar file with you there.
+
+### 7. Parallel and stashing
+We also need to get the javadoc generated for the project.
+
+Fortuneatly that can be done with a small `mvn site` command.
+
+* Create another step called `Javadoc` where you execute the above command, and archive the result in the `target/javadoc` folder.
+
+Now we have two processes that actually can be run in parallel. The `build` and `javadoc` steps both take in the sourcecode and produces artifacts. So lets try to run them in parallel.
+
+> This assignment is loosely formulated, so you need to (look things up yourself)[https://jenkins.io/doc/pipeline/steps/] in order to complete this one
+
+* Stash the source code cloned in `Preparation` and call it source
+* `build` and `javadoc` steps needs to be included in a parallel step like the one below
+
+```
+def builders = [
+	"build": {
+		node {}
+	},
+	"javadoc": {
+	node {}
+	}
+]
+stage('parallel'){
+	parallel builders
+}
+```
+
+* Unstash the source code in both stages, and perform the normal build steps
+* Stash the results instead of archiving. Call them `jar` and `javadoc`
+* Unstash them in the `Results` step in the end where you archive them.
+
+
+### Multibranch pipeline
+There is a file in this repository called Jenkinsfile
+
+Right now it only has a dumb `hello world`
+
+* Take your pipeline script, and replace the files content with it.
+* Replace the git command with `checkout scm`. Multibranch knows where it gets triggered from.
+* Push that back to the repository
+* Create a new job of the `multibranch pipeline` type, and configure that to take from your repository.
+* Trigger it to see that it works.
+* Make a new branch locally, and push it up to GitHub to see that it automatically makes a new pipeline for you as well.
+
+**That's it!** You rock at this!
+If you have more time, and want to make a real pipeline with pretested integration, then read our story about (pipeline vs old fashioned jobs)[http://www.praqma.com/stories/jenkins-pipeline/] and try to incorporate the script into your own pipeline!
+
+
