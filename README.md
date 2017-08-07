@@ -1,12 +1,16 @@
 # Setup
-In order for this to work, you need to install both maven and JDK on your slave.
-Log into the slave, and type the following:
+
+Before this task, we expect you to have been through the basic Jenkins material and have the infrastructure set up from that. 
+
+In order for this to work, you need to install both maven and JDK on your agent.
+Log into the agen, and type the following:
 ```
 sudo apt install maven openjdk-8-jdk
 ```
 
 # Coding Assignment
-While trying to know Jenkins, this will be your coding assignment. It is made just to give you some tangible code to work with:
+
+While the purpose is to learn Jenkins, this will be a coding assignment. It is made just to give you some tangible code to work with:
 Remember, this is not a programming exercise, but a Jenkins one; code is only there so you have something to build :)
 
 In a language of your choice, e.g. Java, implement the following functionality.
@@ -14,7 +18,7 @@ In a language of your choice, e.g. Java, implement the following functionality.
 ## Gilded Rose Requirements Specification
 
 Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a
-prominent city ran by a friendly innkeeper named Allison. We also buy and sell only the finest goods.
+prominent city run by a friendly innkeeper named Allison. We also buy and sell only the finest goods.
 Unfortunately, our goods are constantly degrading in quality as they approach their sell by date. We
 have a system in place that updates our inventory for us. It was developed by a no-nonsense type named
 Leeroy, who has moved on to new adventures. Your task is to add the new feature to our system so that
@@ -99,12 +103,13 @@ Finished: SUCCESS
 * Go into the console output like last time, and see that maven now actually runs your tests.
 
 ### 3. Scheduling the build
+
 As a team, you do not want to go in and manually build the project every time you have some new code commited. _it needs to be automated, right!?!_
 
 * Go into `Configuration` again and select the `Poll SCM` checkbox
 * Type in `* * * * */1` to tell Jenkins to check for new commits every minute.
 * Make a new commit, uncommenting the test in src/test/java/net/praqma/codeacademy/gildedrose/GildedRoseTest.java
-* Push that change to github, and monitor as Jenkins starts a build automatically.
+* Push that change to GitHub, and monitor as Jenkins starts a build automatically.
 * Note that the build fails (because the test is failing) _this is OK_.
 
 ### 4. Generating an artifact
@@ -119,7 +124,7 @@ Our Java project needs to be packaged into a Jar file, in order to be ready for 
 * Fix the unit test by implementing a dumb way of solving the test.
 * Push the change to GitHub, and monitor that Jenkins will grab that change and make a build, producing an artifact.
 
-### 4.5 implementing the Gilded Rose
+### 4.5 Implementing the Gilded Rose
 Look in src/test/java/net/praqma/codeacademy/gildedrose/TexttestFixture.java for examples of items to use for tests.
 * Make a test and push it, observe it failing
 * Make changes to pass the test and push them, observe as only working code are built to production
@@ -145,7 +150,7 @@ We have to look into that now, *don't we?*
 In pipeline, we like `stages` as they give us the ability to see where in the process things are going wrong.
 So take a look at your old build script and transfer the things you did there to the jenkins script.
 
-If you cant remember the syntax for creating states, then here is the hello world example of it:
+If you cant remember the syntax for creating stages, then here is the hello world example of it:
 
 ```
 node {
@@ -166,7 +171,7 @@ Run this to see that it's working. The archiving part can be verified by looking
 ### 7. Parallel and stashing
 We also need to get the javadoc generated for the project.
 
-Fortuneatly that can be done with a small `mvn site` command.
+Fortunately that can be done with a small `mvn site` command.
 
 * Create another step called `Javadoc` where you execute the above command, and archive the result in the `target/javadoc` folder.
 
@@ -210,5 +215,3 @@ Right now it only has a dumb `hello world`
 
 **That's it!** You rock at this!
 If you have more time, and want to make a real pipeline with pretested integration, then read our story about [pipeline vs old fashioned jobs](http://www.praqma.com/stories/jenkins-pipeline/) and try to incorporate the script into your own pipeline!
-
-
