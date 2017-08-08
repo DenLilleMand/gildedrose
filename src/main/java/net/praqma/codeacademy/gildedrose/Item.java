@@ -1,5 +1,11 @@
 package net.praqma.codeacademy.gildedrose;
 
+/**
+ * Hello there, this is a change
+ *
+ *
+ *
+ */
 public class Item {
 
     public String name;
